@@ -3,9 +3,11 @@ from pygame.locals import *
 import time
 import random
 
+ 
+
 SIZE = 40
 BACKGROUND_COLOR = (110, 110, 5)
-
+ 
 class Apple:
     def __init__(self, parent_screen):
         self.parent_screen = parent_screen
@@ -19,7 +21,7 @@ class Apple:
 
     def move(self):
         self.x = random.randint(1,24)*SIZE
-        self.y = random.randint(1,19)*SIZE
+        self.y = random.randint(1,14)*SIZE
 
 class Snake:
     def __init__(self, parent_screen):
@@ -80,7 +82,7 @@ class Game:
         pygame.mixer.init()
         self.play_background_music()
 
-        self.surface = pygame.display.set_mode((1000, 800))
+        self.surface = pygame.display.set_mode((1000, 600))
         self.snake = Snake(self.surface)
         self.snake.draw()
         self.apple = Apple(self.surface)
@@ -136,7 +138,7 @@ class Game:
                 raise "Collision Occurred"
 
         # snake colliding with the boundries of the window
-        if not (0 <= self.snake.x[0] <= 1000 and 0 <= self.snake.y[0] <= 800):
+        if not (0 <= self.snake.x[0] <= 976 and 0 <= self.snake.y[0] <= 576):
             self.play_sound('crash')
             raise "Hit the boundry error"
 
@@ -199,3 +201,4 @@ class Game:
 if __name__ == '__main__':
     game = Game()
     game.run()
+    video.release()
